@@ -7,22 +7,24 @@ public class PokerStatus {
 	Set<Valor> valor = new HashSet<Valor>();
 	Set<Palo> palo = new HashSet<Palo>();
 	
-	public String verificar(Carta carta1, Carta carta2, Carta carta3, Carta carta4, Carta carta5) {
+	public Jugada verificar(Carta carta1, Carta carta2, Carta carta3, Carta carta4, Carta carta5) {
 		
 		addValoresToSet(carta1, carta2, carta3, carta4, carta5);
 		
 		addPalosToSet(carta1, carta2, carta3, carta4, carta5);
 		
+		Juego juego = Juego.NADA;
+		
 		if(this.esPoker(valor)) {
-			return "Poquer";
+			juego = Juego.POQUER;
 		};
 		if(this.esColor(palo)) {
-			return "Color";
+			juego = Juego.COLOR;
 		}
 		if(this.esTrio(valor)) {
-			return "Trio";
+			juego = Juego.TRIO;
 		}
-		return "Nada";
+		return new Jugada(juego, carta1, carta2, carta3, carta4, carta5);
 		
 		
 	}
@@ -55,8 +57,5 @@ public class PokerStatus {
 		return valor.size() == 2;
 	}
 
-	public String manoGanadora(String jugada1, String jugada2) {
-		
-	}
 
 }

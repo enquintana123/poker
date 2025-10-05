@@ -12,10 +12,10 @@ import static org.mockito.Mockito.*;
 class PokerStatusTest {
 	PokerStatus pokerStatus;
 	Carta dummyCarta, cincoCorazones, diezPica, diezTrebol, kDiamante, jDiamante, kTrebol, kCorazon, kPica, qCorazon, diezCorazon, tresCorazon;
-
+	Jugada unaJugada;
 	@BeforeEach
 	void setUp() throws Exception {
-		
+		unaJugada = mock(Jugada.class);
 		pokerStatus = new PokerStatus();
 		tresCorazon = mock(Carta.class);
 		cincoCorazones = mock(Carta.class);
@@ -70,28 +70,28 @@ class PokerStatusTest {
 
 	@Test
 	void testPokerDeK() {
-		String poker = pokerStatus.verificar(kDiamante, kTrebol, kCorazon, kPica, diezTrebol);
-		assertEquals("Poquer", poker);
+		Jugada poker = pokerStatus.verificar(kDiamante, kTrebol, kCorazon, kPica, diezTrebol);
+		assertEquals(poker.getClass(), Jugada.class);
 	}
 
 
 	@Test
 	void testNoEsNada() {
-		String nada = pokerStatus.verificar(cincoCorazones, diezPica, diezTrebol, kTrebol, jDiamante);
-		assertEquals("Nada", nada);
+		Jugada nada = pokerStatus.verificar(cincoCorazones, diezPica, diezTrebol, kTrebol, jDiamante);
+		assertEquals(nada.getClass(), Jugada.class);
 	}
 
 	@Test
 	void testColor() {
-		String color = pokerStatus.verificar(cincoCorazones, kCorazon, qCorazon, diezCorazon, tresCorazon);
-		assertEquals("Color", color);
+		Jugada color = pokerStatus.verificar(cincoCorazones, kCorazon, qCorazon, diezCorazon, tresCorazon);
+		assertEquals(color.getClass(), Jugada.class);
 	}
 	
 	
 	@Test
 	void testTrio() {
-		String trio = pokerStatus.verificar(kPica, kCorazon, kTrebol, cincoCorazones, jDiamante);
-		assertEquals("Trio", trio);
+		Jugada trio = pokerStatus.verificar(kPica, kCorazon, kTrebol, cincoCorazones, jDiamante);
+		assertEquals(trio.getClass(), Jugada.class);
 	}
 	
 	
